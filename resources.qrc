@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/add.png</file>
+        <file>icons/database.png</file>
+        <file>icons/function.png</file>
+        <file>icons/procedure.png</file>
+        <file>icons/remove.png</file>
+        <file>icons/server.png</file>
+        <file>icons/table.png</file>
+        <file>icons/connect.png</file>
+        <file>icons/disconnect.png</file>
+        <file>icons/edit.png</file>
+        <file>icons/icon.png</file>
+        <file>icons/refresh.png</file>
+        <file>icons/exec.png</file>
+        <file>icons/new_query.png</file>
+        <file>icons/query.png</file>
+        <file>icons/table_edit.png</file>
+        <file>icons/save.png</file>
+        <file>icons/log.png</file>
+        <file>icons/server-off.png</file>
+        <file>icons/server-on.png</file>
+        <file>icons/ok.png</file>
+        <file>icons/users.png</file>
+        <file>icons/pwd.png</file>
+        <file>icons/user.png</file>
+        <file>icons/clone.png</file>
+        <file>icons/collapse.png</file>
+        <file>icons/expand.png</file>
+        <file>icons/mariadb-logo.png</file>
+        <file>icons/doc.png</file>
+    </qresource>
+</RCC>
