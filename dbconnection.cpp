@@ -87,6 +87,7 @@ void DBConnection::saveConnections(DBConnectionPtrListPtr cons)
         con["port"] = dbc->Port;
         con["user"] = dbc->User;
         con["pwd"] = QString(dbc->Password.toLatin1().toHex().toBase64());
+        con["Defaults"] = dbc->Defaults;
         Settings::Connections[dbc->name()] = con;
     }    
     Settings::sync();
@@ -112,6 +113,7 @@ DBConnectionPtrListPtr DBConnection::readConnections()
         dbc->User = con["user"].toString();
         dbc->Password = QString(QByteArray::fromHex(QByteArray::fromBase64(con["pwd"].toString().toLatin1())));
         dbc->Driver = con["driver"].toString();
+        dbc->Defaults = con["Defaults"].toObject();
         ret->append(dbc);
     }
     return ret;

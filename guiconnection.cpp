@@ -1,6 +1,8 @@
 #include "guiconnection.h"
 #include "ui_guiconnection.h"
 #include <QDateTime>
+#include <config.h>
+#include <settings.h>
 
 void GuiConnection::test(bool)
 {
@@ -27,6 +29,8 @@ void GuiConnection::done(int r)
         Connection->Port = ui->Port->value();
         Connection->User = ui->User->text();
         Connection->Password = ui->Password->text();
+        Connection->Defaults["Engine"] = DEF_ENGINE;
+        Connection->Defaults["Collation"] = DEF_COLLATION;
     }
     QDialog::done(r);
 }

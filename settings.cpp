@@ -6,13 +6,30 @@ QJsonObject Settings::Connections = QJsonObject();
 QJsonObject Settings::TableTemplates = QJsonObject();
 QJsonObject Settings::Options = QJsonObject();
 QJsonObject Settings::Queries = QJsonObject();
-QJsonObject Settings::Engines = QJsonObject();
-QJsonObject Settings::ColumnTypes = QJsonObject();
+QJsonArray Settings::Engines = QJsonArray();
+QJsonArray Settings::ColumnTypes = QJsonArray();
 void Settings::init()
 {
     if (Self == 0L)
         Self = new Settings();
     read();
+    if (ColumnTypes.isEmpty())
+    {
+        ColumnTypes.append(QJsonValue("varchar(25)"));
+        ColumnTypes.append(QJsonValue("varchar(100)"));
+        ColumnTypes.append(QJsonValue("varchar(500)"));
+        ColumnTypes.append(QJsonValue("int(11)"));
+        ColumnTypes.append(QJsonValue("longtext"));
+        ColumnTypes.append(QJsonValue("mediumtext"));
+        ColumnTypes.append(QJsonValue("text"));
+        ColumnTypes.append(QJsonValue("decimal(21,9)"));
+        ColumnTypes.append(QJsonValue("decimal(19,8)"));
+        ColumnTypes.append(QJsonValue("time"));
+        ColumnTypes.append(QJsonValue("date"));
+        ColumnTypes.append(QJsonValue("datetime"));
+        ColumnTypes.append(QJsonValue("char(1)"));
+        ColumnTypes.append(QJsonValue("timestamp"));
+    }
 }
 void Settings::read()
 {
@@ -58,12 +75,12 @@ void Settings::read()
        qDebug(QString("Queries section not found, %1").arg(Self->Config).toStdString().c_str());
 
     if (cf.contains("Engines"))
-        Engines = cf["Engines"].toObject();
+        Engines = cf["Engines"].toArray();
     else
        qDebug(QString("Engines section not found, %1").arg(Self->Config).toStdString().c_str());
 
     if (cf.contains("ColumnTypes"))
-        ColumnTypes = cf["ColumnTypes"].toObject();
+        ColumnTypes = cf["ColumnTypes"].toArray();
     else
        qDebug(QString("ColumnTypes section not found, %1").arg(Self->Config).toStdString().c_str());
 }

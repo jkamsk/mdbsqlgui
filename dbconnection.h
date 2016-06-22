@@ -10,6 +10,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <boost/shared_ptr.hpp>
+#include <QJsonObject>
 #include <config.h>
 
 class DBConnection;
@@ -29,6 +30,7 @@ public:
     int Port;
     QString User;
     QString Password;
+    QJsonObject Defaults;
     QString name();
 
     static DBConnectionPtr New(QString name);

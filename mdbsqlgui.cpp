@@ -258,6 +258,7 @@ void MdbSqlGui::doAction(bool /*toggled*/)
         if (rc == QDialog::Accepted)
         {
             Connections->append(newc);
+            ItemsState.insert(newc->name(), isEspanded);
         }
         DBConnection::saveConnections(Connections);
         showConnections();
@@ -266,6 +267,9 @@ void MdbSqlGui::doAction(bool /*toggled*/)
     case ACT_DROPCONN:
     {
         DBConnectionPtr conn = connection(entity->connection());
+        int rc = QMessageBox::question(this, tr("Drop confirmation"), tr("Do You want drop connection %1 ?").arg(conn->name()), QMessageBox::No, QMessageBox::Yes);
+        if (rc != (int)QMessageBox::Yes)
+            break;
         if (conn.get())
         {
             Connections->removeAt(Connections->indexOf(conn));
@@ -291,7 +295,8 @@ void MdbSqlGui::doAction(bool /*toggled*/)
         DBConnectionPtr con = connection(entity->connection());
         if (con.get())
         {
-            con->login();
+            if (con->login())
+                ItemsState.insert(con->name(), isEspanded);
             showConnections();
         }
         break;
@@ -339,6 +344,12 @@ void MdbSqlGui::doAction(bool /*toggled*/)
         }
         break;
     }
+    case ACT_MDBHOMEPG:
+        noViewClickedSlot();
+        break;
+    case ACT_KNOWLBASE:
+        knowledgeBasePageSlot();
+        break;
     }//switch
     checkPages();
 }
@@ -509,6 +520,17 @@ void MdbSqlGui::showDbTreeContextMenu(QTreeWidgetItem* item, const QPoint& globa
             act->setIcon(QIcon(":/icons/remove.png"));
         }
     }
+
+    menu.addSeparator();
+
+    act = menu.addAction(tr("MariaDB Home page"), this, SLOT(doAction(bool)));
+    act->setData(actionData(ACT_MDBHOMEPG));
+    act->setIcon(QIcon(":/icons/mariadb-logo.png"));
+
+    act = menu.addAction(tr("Knowledge base"), this, SLOT(doAction(bool)));
+    act->setData(actionData(ACT_KNOWLBASE));
+    act->setIcon(QIcon(":/icons/doc.png"));
+
     menu.exec(globalPos);
 }
 void MdbSqlGui::placeWindow()

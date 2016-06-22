@@ -29,5 +29,6 @@
         <file>icons/expand.png</file>
         <file>icons/mariadb-logo.png</file>
         <file>icons/doc.png</file>
+        <file>icons/set-left.png</file>
     </qresource>
 </RCC>

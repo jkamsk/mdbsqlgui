@@ -19,27 +19,34 @@ class GuiTable : public QWidget
     QString TableName;
     DBConnectionPtr Con;
     DbEntityPtr Ent;
-    QJsonObject Data;
+    QJsonObject Data;    
+    QJsonObject OriginData;
     QString SelectColumn;
     void showData();
     bool validateColumnData();
     bool validateData();
     void errMsg(QString str="");
     void showColumnData(QString cname="");
-    QString sqlCommand();
+    QStringList sqlCommand();
+    void fillEngines();
+    void fillColumnTypes();
+    void fillCollations();
+    void makeTableData();
+    QStringList tableAlter();
+    void setData(bool disable_validate=false);
 public:
     explicit GuiTable(DBConnectionPtr con, DbEntityPtr ent, QString Name="", QJsonObject data=QJsonObject(), QWidget *parent = 0);
     ~GuiTable();
 private slots:
     void columnActivatedSlot(QListWidgetItem *);
-    void newSlot();
-    void deleteSlot();
-    void setSlot();
+    void newColumnSlot();
+    void deleteColumnSlot();
+    void refresh();
+    void setColumnSlot();
     void applySlot();
     void saveAsTemplateSlot();
     void loadFromTemplateSlot();
-    void removeTemplateSlot();
-    void setData();
+    void removeTemplateSlot();    
     void showSqlCmdSlot();
 private:
     Ui::GuiTable *ui;

@@ -197,6 +197,9 @@
              </item>
              <item>
               <widget class="QToolButton" name="HomePage">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string>Home page</string>
                </property>
@@ -242,6 +245,9 @@
                  <underline>true</underline>
                 </font>
                </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string> Knowledge Base</string>
                </property>
@@ -267,6 +273,9 @@
                  <pointsize>12</pointsize>
                  <underline>true</underline>
                 </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="text">
                 <string>  New Connection</string>

@@ -1,7 +1,6 @@
 #include "guicreatedatabase.h"
 #include "ui_guicreatedatabase.h"
 
-
 void GuiCreateDatabase::done(int r)
 {
     if (!ui->Name->text().isEmpty())
@@ -23,6 +22,7 @@ GuiCreateDatabase::GuiCreateDatabase(DBConnectionPtr conn, QWidget *parent) :
     QStringList colls;
     if (Connection->collations(colls))
         ui->Collation->addItems(colls);
+    ui->Collation->setCurrentText(conn->Defaults["Collation"].toString());
 }
 
 GuiCreateDatabase::~GuiCreateDatabase()

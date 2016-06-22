@@ -16,8 +16,8 @@ public:
     static QJsonObject TableTemplates;
     static QJsonObject Options;
     static QJsonObject Queries;
-    static QJsonObject Engines;
-    static QJsonObject ColumnTypes;
+    static QJsonArray Engines;
+    static QJsonArray ColumnTypes;
     static void init();
     static void read();
     static void write();

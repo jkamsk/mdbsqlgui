@@ -156,8 +156,11 @@ SqlWidget::SqlWidget(DBConnectionPtr con, DbEntityPtr ent, SqlWidgetMode wm, QWi
             ui->Cmd->setText(sql);
             execSlot();
         }
-        else
+        else        
             ui->Cmd->setText("SELECT * FROM <TABLE> WHERE <CONDITION>;");
+        Syntax *synt = new Syntax(ui->Cmd->document());
+        synt = new Syntax(ui->Status->document());
+
     }
     if (Mode == swmEditTableData)
     {

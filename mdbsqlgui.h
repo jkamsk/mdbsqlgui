@@ -26,6 +26,8 @@
 #define ACT_EDITTABLE       115
 #define ACT_EXPANDALL       116
 #define ACT_COLLAPSEALL     117
+#define ACT_KNOWLBASE       118
+#define ACT_MDBHOMEPG       119
 
 namespace Ui {
 class MdbSqlGui;
