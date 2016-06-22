@@ -10,5 +10,7 @@
 #define DEF_ENGINE      "InnoDB"
 #define DEF_COLLATION   "utf8_general_ci"
 
+#define VERSION         "0.1"
+
 #endif // CONFIG
 

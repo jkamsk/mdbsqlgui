@@ -5,6 +5,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QSettings>
+#include <dbconnection.h>
 
 class Settings
 {    
@@ -12,7 +13,8 @@ class Settings
     static Settings * Self;
     explicit Settings();
 public:    
-    static QJsonObject Connections;
+    static DBConnectionPtrListPtr Connections;
+    static QJsonObject ConnectionsJS;
     static QJsonObject TableTemplates;
     static QJsonObject Options;
     static QJsonObject Queries;

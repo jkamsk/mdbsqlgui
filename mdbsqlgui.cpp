@@ -44,9 +44,9 @@ void MdbSqlGui::showConnections()
     QString path;
     QList<QTreeWidgetItem *> expand;
     ItemState istate;
-    for (int i=0;i<Connections->count();i++)
+    for (int i=0;i<Settings::Connections->count();i++)
     {
-        DBConnectionPtr con = Connections->at(i);
+        DBConnectionPtr con = Settings::Connections->at(i);
         ps_conn = con->name();
         path = QString("%1").arg(ps_conn);
         QTreeWidgetItem * w_conn = new QTreeWidgetItem(ui->DBTree);
@@ -128,9 +128,9 @@ void MdbSqlGui::showConnections()
 DBConnectionPtr MdbSqlGui::connection(QString name)
 {
     DBConnectionPtr ret;
-    for (int i=0;i<Connections->count();i++)
+    for (int i=0;i<Settings::Connections->count();i++)
     {
-        ret = Connections->at(i);
+        ret = Settings::Connections->at(i);
         if (ret->name() == name)
             return ret;
     }
@@ -252,15 +252,15 @@ void MdbSqlGui::doAction(bool /*toggled*/)
     }
     case ACT_NEWCONNECTION:
     {
-        DBConnectionPtr newc = DBConnection::New(QString("Connection %1").arg(Connections->count()+1));
+        DBConnectionPtr newc = DBConnection::New(QString("Connection %1").arg(Settings::Connections->count()+1));
         GuiConnection dialog(newc, this);
         int rc = dialog.exec();
         if (rc == QDialog::Accepted)
         {
-            Connections->append(newc);
+            Settings::Connections->append(newc);
             ItemsState.insert(newc->name(), isEspanded);
         }
-        DBConnection::saveConnections(Connections);
+        DBConnection::saveConnections(Settings::Connections);
         showConnections();
         break;
     }
@@ -272,8 +272,8 @@ void MdbSqlGui::doAction(bool /*toggled*/)
             break;
         if (conn.get())
         {
-            Connections->removeAt(Connections->indexOf(conn));
-            DBConnection::saveConnections(Connections);
+            Settings::Connections->removeAt(Settings::Connections->indexOf(conn));
+            DBConnection::saveConnections(Settings::Connections);
             showConnections();
         }
         break;
@@ -285,7 +285,7 @@ void MdbSqlGui::doAction(bool /*toggled*/)
         {
             GuiConnection dialog(con, this);
             dialog.exec();
-            DBConnection::saveConnections(Connections);
+            DBConnection::saveConnections(Settings::Connections);
             showConnections();
         }
         break;
@@ -363,14 +363,14 @@ void MdbSqlGui::knowledgeBasePageSlot()
 }
 void MdbSqlGui::startNewConnectionSlot()
 {
-    DBConnectionPtr newc = DBConnection::New(QString("Connection %1").arg(Connections->count()+1));
+    DBConnectionPtr newc = DBConnection::New(QString("Connection %1").arg(Settings::Connections->count()+1));
     GuiConnection dialog(newc, this);
     int rc = dialog.exec();
     if (rc == QDialog::Accepted)
     {
-        Connections->append(newc);
+        Settings::Connections->append(newc);
     }
-    DBConnection::saveConnections(Connections);
+    DBConnection::saveConnections(Settings::Connections);
     showConnections();
     checkPages();
 }
@@ -574,8 +574,9 @@ MdbSqlGui::MdbSqlGui(QWidget *parent) :
     ShowSystemDatabases = false;
     ui->setupUi(this);
     ui->DBTree->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->Version->setText(VERSION);
     Settings::init();
-    Connections = DBConnection::readConnections();
+    Settings::Connections = DBConnection::readConnections();
 
     // Events
     connect(ui->DBTree, SIGNAL(customContextMenuRequested(QPoint)), this,

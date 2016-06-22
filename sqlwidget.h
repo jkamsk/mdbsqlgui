@@ -24,8 +24,6 @@ private:
     DbEntityPtr Ent;
     QSqlQueryModel * Model;
     SqlWidgetMode Mode;
-//    void selectTab(QString name);
-//    void removeTab(QString name);
 public:
     explicit SqlWidget(DBConnectionPtr con, DbEntityPtr ent, SqlWidgetMode wm=swmEditTableData, QWidget *parent = 0);
     ~SqlWidget();
@@ -36,6 +34,8 @@ protected slots:
     void addSlot();
     void removeSlot();
     void syncSlot();
+    void saveSlot();
+    void loadSlot();
 };
 
 #endif // SQLWIDGET_H

@@ -555,7 +555,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/icons/log.png</normaloff>:/icons/log.png</iconset>
+         <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
        </property>
       </widget>
      </item>
@@ -590,7 +590,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/icons/log.png</normaloff>:/icons/log.png</iconset>
+         <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
        </property>
       </widget>
      </item>

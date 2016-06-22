@@ -30,5 +30,7 @@
         <file>icons/mariadb-logo.png</file>
         <file>icons/doc.png</file>
         <file>icons/set-left.png</file>
+        <file>icons/open.png</file>
+        <file>icons/quit.png</file>
     </qresource>
 </RCC>

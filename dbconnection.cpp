@@ -77,7 +77,7 @@ void DBConnection::saveConnections(DBConnectionPtrListPtr cons)
         return;
     DBConnectionPtr dbc;
     QJsonObject con;
-    Settings::Connections = QJsonObject();
+    Settings::ConnectionsJS = QJsonObject();
     for (int i=0;i<cons->count();i++)
     {
         dbc = cons->at(i);
@@ -88,7 +88,7 @@ void DBConnection::saveConnections(DBConnectionPtrListPtr cons)
         con["user"] = dbc->User;
         con["pwd"] = QString(dbc->Password.toLatin1().toHex().toBase64());
         con["Defaults"] = dbc->Defaults;
-        Settings::Connections[dbc->name()] = con;
+        Settings::ConnectionsJS[dbc->name()] = con;
     }    
     Settings::sync();
 }
@@ -99,7 +99,7 @@ DBConnectionPtrListPtr DBConnection::readConnections()
 
     Settings::read();
 
-    QJsonObject conns = Settings::Connections;
+    QJsonObject conns = Settings::ConnectionsJS;
     QJsonObject con;
     QStringList keys = conns.keys();
     QString cname;

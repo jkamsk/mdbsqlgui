@@ -2,12 +2,13 @@
 #include <QFile>
 
 Settings * Settings::Self = 0L;
-QJsonObject Settings::Connections = QJsonObject();
+QJsonObject Settings::ConnectionsJS = QJsonObject();
 QJsonObject Settings::TableTemplates = QJsonObject();
 QJsonObject Settings::Options = QJsonObject();
 QJsonObject Settings::Queries = QJsonObject();
 QJsonArray Settings::Engines = QJsonArray();
 QJsonArray Settings::ColumnTypes = QJsonArray();
+DBConnectionPtrListPtr Settings::Connections = DBConnection::NewList();
 void Settings::init()
 {
     if (Self == 0L)
@@ -55,7 +56,7 @@ void Settings::read()
     }
     QJsonObject cf = doc.object();
     if (cf.contains("Connections"))
-        Connections = cf["Connections"].toObject();
+        ConnectionsJS = cf["Connections"].toObject();
     else
        qDebug(QString("Connections section not found, %1").arg(Self->Config).toStdString().c_str());
 
@@ -99,7 +100,7 @@ void Settings::write()
     }
 
     QJsonObject cf;
-    cf["Connections"] = Connections;
+    cf["Connections"] = ConnectionsJS;
     cf["TableTemplates"] = TableTemplates;
     cf["Options"] = Options;
     cf["Queries"] = Queries;

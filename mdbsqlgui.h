@@ -7,6 +7,7 @@
 #include <QHash>
 #include <QMenu>
 #include <dbconnection.h>
+#include <config.h>
 
 #define ACT_NEWCONNECTION   100
 #define ACT_EDITCONNECTION  101
@@ -41,7 +42,7 @@ class MdbSqlGui : public QMainWindow
         isCollapsed = 2
     };
     Q_OBJECT
-    DBConnectionPtrListPtr Connections;
+    //DBConnectionPtrListPtr Connections;
     DBConnectionPtr connection(QString name);
     QHash<QString, ItemState> ItemsState;
     bool ShowSystemDatabases;

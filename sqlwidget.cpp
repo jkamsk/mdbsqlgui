@@ -1,33 +1,49 @@
 #include "sqlwidget.h"
 #include "ui_sqlwidget.h"
 #include <syntax.h>
+#include <settings.h>
+#include <QInputDialog>
+#include <QMessageBox>
 
-//void SqlWidget::selectTab(QString name)
-//{
-//    int ix = -1;
-//    for (int i=0;i<ui->Taber->count();i++)
-//    {
-//        if (ui->Taber->widget(i)->objectName() == name)
-//        {
-//            ix = i;
-//            break;
-//        }
-//    }
-//    ui->Taber->setCurrentIndex(ix);
-//}
-//void SqlWidget::removeTab(QString name)
-//{
-//    int ix = -1;
-//    for (int i=0;i<ui->Taber->count();i++)
-//    {
-//        if (ui->Taber->widget(i)->objectName() == name)
-//        {
-//            ix = i;
-//            break;
-//        }
-//    }
-//    ui->Taber->removeTab(ix);
-//}
+void SqlWidget::saveSlot()
+{
+    bool ok = false;
+    QString tmplName;
+    while (!ok)
+    {
+        QStringList tmpls = Settings::Queries.keys();
+        tmpls.insert(0, tr("Query%1").arg(Settings::Queries.count()+1));
+        tmplName = QInputDialog::getItem(this, tr("Query selection"), tr("Name of query"), tmpls, 0, true, &ok);
+        if (!ok)
+            return;
+        ok = false;
+        if (Settings::Queries.contains(tmplName))
+        {
+            int rc = QMessageBox::question(this, tr("Query confirmation"), tr("Query with name '%1' already exists, Do You want replace it ?").arg(tmplName), QMessageBox::No, QMessageBox::Yes);
+            if (rc == (int)QMessageBox::Yes)
+                ok = true;
+        }
+        else
+            ok = true;
+    }
+    Settings::Queries[tmplName] = ui->Cmd->toPlainText();
+    Settings::sync();
+}
+void SqlWidget::loadSlot()
+{
+    QStringList tmpls = Settings::Queries.keys();
+    if (tmpls.count() == 0)
+    {
+        QMessageBox::critical(this, tr("Information"), tr("No Query available!"));
+        return;
+    }
+    bool ok = false;
+    QString tmplname = QInputDialog::getItem(this, tr("Query selection"), tr("Select query"), tmpls, 0, false, &ok);
+    if (!ok)
+        return;
+    QString str = Settings::Queries[tmplname].toString();
+    ui->Cmd->setPlainText(str);
+}
 void SqlWidget::execSlot()
 {
     QSqlDatabase db = QSqlDatabase::database(Ent->connection());
@@ -137,6 +153,10 @@ SqlWidget::SqlWidget(DBConnectionPtr con, DbEntityPtr ent, SqlWidgetMode wm, QWi
             SLOT(removeSlot()));
     connect(ui->Sync, SIGNAL(released()), this,
             SLOT(syncSlot()));
+    connect(ui->QueryOpen, SIGNAL(released()), this,
+            SLOT(loadSlot()));
+    connect(ui->QuerySave, SIGNAL(released()), this,
+            SLOT(saveSlot()));
 
     if (Mode == swmQuery)
     {
