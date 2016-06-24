@@ -1,5 +1,5 @@
-MdbSqlGUI - MariaDB SQL Gui mail:jkam.mail@gmail.com
-----------------------------------------------------
+MdbSqlGUI - MariaDB SQL Gui
+---------------------------
 
 Project goals:
 --------------
