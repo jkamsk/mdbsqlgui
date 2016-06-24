@@ -50,3 +50,7 @@ FORMS    += mdbsqlgui.ui \
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    readme.txt \
+    change.log

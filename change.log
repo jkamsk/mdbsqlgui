@@ -1,0 +1,11 @@
+0.1 - initial commit
+--------------------
+  GUI
+  Connection management
+  Database management
+  User management
+  Queries with saving
+  Direct editing data in tables
+  Table management with templates support
+    Only simple columns with few params no indexes, no constraints
+    no foreign keys
