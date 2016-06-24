@@ -7,7 +7,7 @@ Project goals:
 - Qt5 based without other dependencies
 - GPL license
 
-Features:
+Features: please see change.log file for current state of features
 ---------
 - Minimalistic GUI
 - Connection management
