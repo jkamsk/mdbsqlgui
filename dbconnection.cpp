@@ -148,11 +148,21 @@ bool DBConnection::login()
         bool ok = runSql("SELECT 'OK' as 'Test';");
         if (ok)
         {
+            LastError = db.lastError();
             Connected = true;
             return true;
+
         }
     }
+    LastError = db.lastError();
     return false;
+}
+QString DBConnection::lastErrorText()
+{
+   QString ret;
+   ret += QString("Driver: %1, %2\n\n").arg(LastError.number()).arg(LastError.driverText());
+   ret += QString("DB: %1, %2").arg(LastError.nativeErrorCode()).arg(LastError.databaseText());
+   return ret;
 }
 void DBConnection::logout()
 {

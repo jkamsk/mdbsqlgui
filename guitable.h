@@ -19,17 +19,14 @@ class GuiTable : public QWidget
     QString TableName;
     DBConnectionPtr Con;
     DbEntityPtr Ent;
-    QJsonObject Data;    
+    QJsonObject Data;
     QJsonObject OriginData;
     QString SelectColumn;
-    QString SelectFok;
     void showData();
     bool validateColumnData();
-    bool validateFokData();
     bool validateData();
     void errMsg(QString str="");
     void showColumnData(QString cname="");
-    void showFokData(QString fokname="");
     QStringList sqlCommand();
     void fillEngines();
     void fillColumnTypes();
@@ -42,18 +39,14 @@ public:
     ~GuiTable();
 private slots:
     void columnActivatedSlot(QListWidgetItem *);
-    void fokActivatedSlot(QListWidgetItem *);
     void newColumnSlot();
-    void newFokSlot();
     void deleteColumnSlot();
-    void deleteFokSlot();
     void refresh();
     void setColumnSlot();
-    void setFokSlot();
     void applySlot();
     void saveAsTemplateSlot();
     void loadFromTemplateSlot();
-    void removeTemplateSlot();    
+    void removeTemplateSlot();
     void showSqlCmdSlot();
 private:
     Ui::GuiTable *ui;

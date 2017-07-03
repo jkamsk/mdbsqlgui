@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>352</width>
-    <height>344</height>
+    <width>368</width>
+    <height>406</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,47 +40,14 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>13</width>
+         <height>379</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="Name"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Driver</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QComboBox" name="Driver">
-         <item>
-          <property name="text">
-           <string>MariaDB/MySQL</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Host</string>
-         </property>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout">
        <item row="3" column="1">
         <widget class="QLineEdit" name="Host">
          <property name="minimumSize">
@@ -95,39 +62,6 @@
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Port</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="Port">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximum">
-          <number>65535</number>
-         </property>
-         <property name="value">
-          <number>3306</number>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>User</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="User"/>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Password</string>
          </property>
         </widget>
        </item>
@@ -151,8 +85,14 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0" colspan="2">
+       <item row="9" column="1">
         <widget class="QLabel" name="Status">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
          <property name="palette">
           <palette>
            <active>
@@ -201,6 +141,65 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="Port">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="value">
+          <number>3306</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="Driver">
+         <item>
+          <property name="text">
+           <string>MariaDB/MySQL</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Host</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="User"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Password</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="Name"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Driver</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>User</string>
          </property>
         </widget>
        </item>
@@ -665,7 +664,14 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
         <widget class="QDialogButtonBox" name="buttonBox">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -684,8 +690,8 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>13</width>
+         <height>379</height>
         </size>
        </property>
       </spacer>

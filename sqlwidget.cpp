@@ -78,6 +78,7 @@ void SqlWidget::execSlot()
 
     Syntax *synt = new Syntax(ui->Cmd->document());
     synt = new Syntax(ui->Status->document());
+    Q_UNUSED(synt);
     if (err.type() != QSqlError::NoError)
     {
         errStr = tr("Query failed\n");
@@ -95,8 +96,7 @@ void SqlWidget::execSlot()
 }
 void SqlWidget::addSlot()
 {
-    bool a = Model->insertRow(Model->rowCount());
-    a = 5;
+    Model->insertRow(Model->rowCount());
 }
 void SqlWidget::removeSlot()
 {
@@ -113,7 +113,7 @@ void SqlWidget::syncSlot()
 {
     QString errStr;
     QSqlError err;
-    QSqlTableModel * tm = (QSqlTableModel *)Model;
+    QSqlTableModel * tm = reinterpret_cast<QSqlTableModel *>(Model);
     if (!tm->submitAll())
     {
         err = Model->lastError();
@@ -180,6 +180,7 @@ SqlWidget::SqlWidget(DBConnectionPtr con, DbEntityPtr ent, SqlWidgetMode wm, QWi
             ui->Cmd->setText("SELECT * FROM <TABLE> WHERE <CONDITION>;");
         Syntax *synt = new Syntax(ui->Cmd->document());
         synt = new Syntax(ui->Status->document());
+        Q_UNUSED(synt);
 
     }
     if (Mode == swmEditTableData)

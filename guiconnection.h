@@ -11,7 +11,7 @@ class GuiConnection;
 class GuiConnection : public QDialog
 {
     Q_OBJECT
-    DBConnectionPtr Connection;
+    DBConnectionPtr Connection;    
 public:
     explicit GuiConnection(DBConnectionPtr conn, QWidget *parent = 0);
     ~GuiConnection();

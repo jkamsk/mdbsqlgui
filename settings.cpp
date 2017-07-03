@@ -31,6 +31,13 @@ void Settings::init()
         ColumnTypes.append(QJsonValue("char(1)"));
         ColumnTypes.append(QJsonValue("timestamp"));
     }
+    if (!Options.contains("default.column.type"))
+        Options["default.column.type"] = "varchar(25)";
+    if (!Options.contains("default.column.name"))
+        Options["default.column.name"] = "Column%1";
+    if (!Options.contains("default.column.collation"))
+        Options["default.column.collation"] = "utf8_general_ci";
+    sync();
 }
 void Settings::read()
 {

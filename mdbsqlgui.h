@@ -16,7 +16,7 @@
 #define ACT_CREATEDB        104
 #define ACT_REMOVEDB        105
 #define ACT_DROPCONN        106
-#define ACT_RELOAD          107
+#define ACT_MDBSQLGUI_RELOAD          107
 #define ACT_SHOWSYSDB       108
 #define ACT_SHOWDATA        109
 #define ACT_EDITDATA        110

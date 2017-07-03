@@ -43,6 +43,7 @@ public:
     void logout();
     bool isConnected();
     QSqlError lastError();
+    QString lastErrorText();
 
     bool selectDatabase(QString name);
     bool tables(QStringList & list);

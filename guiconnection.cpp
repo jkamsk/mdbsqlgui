@@ -1,6 +1,7 @@
 #include "guiconnection.h"
 #include "ui_guiconnection.h"
 #include <QDateTime>
+#include <QMessageBox>
 #include <config.h>
 #include <settings.h>
 
@@ -14,10 +15,13 @@ void GuiConnection::test(bool)
     dbc->Port = ui->Port->value();
     dbc->User = ui->User->text();
     dbc->Password = ui->Password->text();
-    if (dbc->test())
-        ui->Status->setText(tr("Success"));
+    if (dbc->test())    
+        ui->Status->setText(tr("Success"));            
     else
+    {
         ui->Status->setText(tr("Failed"));
+        QMessageBox::critical(this, tr("Connection Error"), dbc->lastErrorText());
+    }
 }
 void GuiConnection::done(int r)
 {

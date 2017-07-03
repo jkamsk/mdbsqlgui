@@ -9,7 +9,7 @@ void UserMng::doAction(bool)
     QAction * act = (QAction*)sender();
     int actID = act->data().toInt();
 
-    if (actID == ACT_RELOAD)
+    if (actID == ACT_USERMNG_RELOAD)
         reloadSlot();
     if (actID == ACT_COLLALL)
         ui->Users->collapseAll();
@@ -914,7 +914,7 @@ void UserMng::showDbTreeContextMenu(QTreeWidgetItem* item, const QPoint& globalP
     Menu.addSeparator();
 
     act = Menu.addAction(tr("Reload"), this, SLOT(doAction(bool)));
-    act->setData(ACT_RELOAD);
+    act->setData(ACT_USERMNG_RELOAD);
     act->setIcon(QIcon(":/icons/refresh.png"));
 
     Menu.exec(globalPos);

@@ -245,7 +245,7 @@ void MdbSqlGui::doAction(bool /*toggled*/)
     }
     case ACT_SHOWSYSDB:
         ShowSystemDatabases = !ShowSystemDatabases;
-    case ACT_RELOAD:
+    case ACT_MDBSQLGUI_RELOAD:
     {
         showConnections();
         break;
@@ -297,6 +297,8 @@ void MdbSqlGui::doAction(bool /*toggled*/)
         {
             if (con->login())
                 ItemsState.insert(con->name(), isEspanded);
+            else
+                QMessageBox::critical(this, tr("Connection Error"), con->lastErrorText());
             showConnections();
         }
         break;
@@ -402,7 +404,6 @@ void MdbSqlGui::showDbTreeContextMenu(QTreeWidgetItem* item, const QPoint& globa
 {
     QMenu menu;
 
-
     QAction * act = menu.addAction(tr("New Connection"), this, SLOT(doAction(bool)));
     act->setData(actionData(ACT_NEWCONNECTION));
     act->setIcon(QIcon(":/icons/add.png"));
@@ -442,7 +443,7 @@ void MdbSqlGui::showDbTreeContextMenu(QTreeWidgetItem* item, const QPoint& globa
                     act->setIcon(QIcon(":/icons/disconnect.png"));
 
                     act = menu.addAction(tr("Refresh"), this, SLOT(doAction(bool)));
-                    act->setData(actionData(ACT_RELOAD, path));
+                    act->setData(actionData(ACT_MDBSQLGUI_RELOAD, path));
                     act->setIcon(QIcon(":/icons/refresh.png"));
 
                     act = menu.addAction(tr("Create Database"), this, SLOT(doAction(bool)));
@@ -484,6 +485,7 @@ void MdbSqlGui::showDbTreeContextMenu(QTreeWidgetItem* item, const QPoint& globa
             act = menu.addAction(tr("New Table"), this, SLOT(doAction(bool)));
             act->setData(actionData(ACT_ADDTABLE, path));
             act->setIcon(QIcon(":/icons/add.png"));
+            //act->setDisabled(true);
 
             menu.addSeparator();
 
@@ -502,6 +504,7 @@ void MdbSqlGui::showDbTreeContextMenu(QTreeWidgetItem* item, const QPoint& globa
             act = menu.addAction(tr("Edit Table"), this, SLOT(doAction(bool)));
             act->setData(actionData(ACT_EDITTABLE, path));
             act->setIcon(QIcon(":/icons/edit.png"));
+            //act->setDisabled(true);
 
             menu.addSeparator();
 

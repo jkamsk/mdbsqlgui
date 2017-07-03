@@ -46,7 +46,7 @@
 
 #define ACT_COLLALL     144
 #define ACT_EXPDALL     145
-#define ACT_RELOAD      146
+#define ACT_USERMNG_RELOAD      146
 
 namespace Ui {
 class UserMng;
