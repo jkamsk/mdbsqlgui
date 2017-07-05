@@ -17,3 +17,11 @@ Features: please see change.log file for current state of features
 - queries with saving
 - direct editing data in tables
 - table management with templates support
+
+Install on blackPanther OS (www.blackpanther.hu)
+---------[in console]--------
+Update repository first: updating repos
+
+Install appliction: installing mdbsqlgui
+
+Start from menu: MDBSqlGui
