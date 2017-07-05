@@ -18,6 +18,12 @@ Features: please see change.log file for current state of features
 - direct editing data in tables
 - table management with templates support
 
+Install:
+--------
+qmake && make 
+mdbsqlgui copy to in your PATH
+
+
 Install on blackPanther OS (www.blackpanther.hu)
 ---------[in console]--------
 Update repository first: updating repos
